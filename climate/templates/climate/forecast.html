@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ClimVista - Karnataka Weather Forecast</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #74ebd5, #9face6);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            border-radius: 16px;
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        h1 {
+            color: #2d2d7f;
+        }
+        label, select, button {
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            background-color: #2d2d7f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .weather-icon {
+            width: 100px;
+            height: 100px;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌤️ ClimVista</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="district">Select District:</label><br>
+            <select name="district" id="district" required>
+                <option value="">-- Select District --</option>
+                {% for dist in districts %}
+                    <option value="{{ dist }}" {% if result and dist == result.district %}selected{% endif %}>{{ dist }}</option>
+                {% endfor %}
+            </select><br>
+            <button type="submit">Get Forecast</button>
+        </form>
+
+        {% if result %}
+            <div class="result">
+                <h2>Weather in {{ result.district }}</h2>
+                <p><strong>Temperature:</strong> {{ result.temperature }}</p>
+                <p><strong>Condition:</strong> {{ result.condition }}</p>
+                {% if result.icon %}
+                    <img class="weather-icon" src="https://openweathermap.org/img/wn/{{ result.icon }}@2x.png" alt="Weather Icon">
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="footer">Built with ❤️ in Karnataka | © 2025 ClimVista</div>
+    </div>
+</body>
+</html>

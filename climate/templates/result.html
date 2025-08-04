@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+</head>
+<body>
+    <h1>Rainfall Prediction for {{ year }}</h1>
+    <p><strong>Predicted Rainfall:</strong> {{ prediction }} mm</p>
+
+    <h2>Relevant Karnataka Regions (Districts/Subdivisions)</h2>
+    <ul>
+        {% for district in districts %}
+            <li>{{ district }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Try Again</a>
+</body>
+</html>

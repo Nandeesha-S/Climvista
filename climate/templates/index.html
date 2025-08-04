@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rainfall Prediction</title>
+</head>
+<body>
+    <h1>Enter Year and Month</h1>
+
+    <form method="post">
+  {% csrf_token %}
+  <label for="year">Enter Year:</label>
+  <input type="number" name="year" required>
+  <button type="submit">Predict</button>
+</form>
+
+</body>
+</html>

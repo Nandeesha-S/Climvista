@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Info</title>
+</head>
+<body>
+    {% if error %}
+        <h2>{{ error }}</h2>
+    {% else %}
+        <h2>Weather in {{ district }}</h2>
+        <p>🌡️ Temperature: {{ temperature }} °C</p>
+        <p>🌥️ Description: {{ description }}</p>
+    {% endif %}
+    <a href="/predict/">Go back</a>
+</body>
+</html>
